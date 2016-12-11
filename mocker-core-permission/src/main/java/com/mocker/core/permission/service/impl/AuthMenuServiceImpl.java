@@ -1,9 +1,9 @@
 package com.mocker.core.permission.service.impl;
 import com.mocker.core.base.dao.BaseRepository;
 import com.mocker.core.base.service.impl.BaseServiceImpl;
-import com.mocker.core.permission.dao.UserRepository;
-import com.mocker.core.permission.domain.User;
-import com.mocker.core.permission.service.IUserService;
+import com.mocker.core.permission.dao.AuthMenuRepository;
+import com.mocker.core.permission.domain.AuthMenu;
+import com.mocker.core.permission.service.IAuthMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,13 +15,14 @@ import org.springframework.stereotype.Service;
  * @Version 1.0
  */
 @Service
-public class UserServiceImplImpl extends BaseServiceImpl<User> implements IUserService {
+public class AuthMenuServiceImpl extends BaseServiceImpl<AuthMenu> implements IAuthMenuService {
 
     @Autowired
-    private UserRepository userRepository;
+    private AuthMenuRepository authMenuRepository;
 
-    public UserServiceImplImpl(@Qualifier("userRepository")BaseRepository repository) {
+    public AuthMenuServiceImpl(@Qualifier("authMenuRepository")BaseRepository repository) {
         super(repository);
     }
+
 
 }

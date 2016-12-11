@@ -3,6 +3,7 @@ package com.mocker.core.permission.dao;/**
  */
 
 import com.mocker.core.base.dao.BaseRepository;
+import com.mocker.core.permission.domain.AuthMenu;
 import com.mocker.core.permission.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -13,5 +14,5 @@ import java.io.Serializable;
  * @Date 2016-12-10 下午5:01
  * @Version 1.0
  */
-public interface UserRepository extends BaseRepository<User>{
+public interface AuthMenuRepository extends BaseRepository<User> {
 }
