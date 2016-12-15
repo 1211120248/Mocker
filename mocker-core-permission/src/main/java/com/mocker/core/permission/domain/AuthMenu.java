@@ -47,7 +47,7 @@ public class AuthMenu {
     private String parentName;
 
     @ApiModelProperty("图片")
-    @Column(length = 50)
+    @Column(length = 200)
     private String icon;
 
     @ApiModelProperty("菜单类型")

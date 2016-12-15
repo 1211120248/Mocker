@@ -4,6 +4,7 @@ package com.mocker.core.base.dao;/**
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.repository.NoRepositoryBean;
 
 import java.io.Serializable;
 
@@ -12,5 +13,6 @@ import java.io.Serializable;
  * @Date 2016-12-10 下午5:01
  * @Version 1.0
  */
+@NoRepositoryBean
 public interface BaseRepository<T> extends JpaRepository<T, Serializable>,JpaSpecificationExecutor<T>{
 }

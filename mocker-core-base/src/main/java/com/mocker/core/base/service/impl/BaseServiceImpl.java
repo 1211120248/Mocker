@@ -1,13 +1,13 @@
 package com.mocker.core.base.service.impl;
 
 import com.mocker.core.base.dao.BaseRepository;
+import com.mocker.core.base.query.BaseQuery;
 import com.mocker.core.base.service.IBaseService;
-import com.mocker.core.base.wapper.PageResult;
-import org.springframework.data.domain.Example;
+import com.mocker.core.base.wrapper.PageResult;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Modifying;
 
 import java.io.Serializable;
 import java.util.List;
@@ -25,10 +25,12 @@ public class BaseServiceImpl<T> implements IBaseService<T> {
         this.repository = repository;
     }
 
+    @Modifying
     public void save(T t){
         repository.save(t);
     }
 
+    @Modifying
     public void delete(Serializable id){
         repository.delete(id);
     }
@@ -37,11 +39,17 @@ public class BaseServiceImpl<T> implements IBaseService<T> {
         return (T) repository.getOne(id);
     }
 
+    @Override
+    public T findById(Serializable id) {
+        return (T) repository.findOne(id);
+    }
+
     public List<T> findAll(){
         return  repository.findAll();
     }
 
-    public PageResult findAll(Pageable pageable) {
+    public PageResult findAll(BaseQuery baseQuery) {
+        Pageable pageable = new PageRequest(baseQuery.getPage(),baseQuery.getPageSize());
         Page<T> page = repository.findAll(pageable);
         PageResult<T> pageResult = PageResult.getInstance(page.getTotalPages(),page.getTotalElements(),page.getContent());
         return pageResult;

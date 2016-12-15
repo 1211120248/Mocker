@@ -1,4 +1,4 @@
-package com.mocker.core.base.wapper;
+package com.mocker.core.base.wrapper;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
