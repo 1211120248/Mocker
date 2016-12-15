@@ -2,6 +2,7 @@ package com.mocker.core.permission.domain;/**
  * Created by sunwukong on 16/12/10.
  */
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -15,7 +16,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "S_USER")
-public class User {
+public class SysUser {
     @Id
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
@@ -26,7 +27,7 @@ public class User {
     private String username;
 
     @ApiModelProperty("密码")
-    @Column(name = "password",length = 50,nullable = false)
+    @Column(name = "password",length = 100,nullable = false)
     private String password;
 
     @ApiModelProperty("登录名")

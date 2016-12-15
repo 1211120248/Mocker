@@ -1,12 +1,11 @@
 package com.mocker.core.permission.service.impl;
 import com.mocker.core.base.dao.BaseRepository;
 import com.mocker.core.base.service.impl.BaseServiceImpl;
-import com.mocker.core.permission.dao.UserRepository;
-import com.mocker.core.permission.domain.User;
-import com.mocker.core.permission.service.IUserService;
+import com.mocker.core.permission.dao.SysMenuRepository;
+import com.mocker.core.permission.domain.SysMenu;
+import com.mocker.core.permission.service.ISysMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,13 +14,14 @@ import org.springframework.stereotype.Service;
  * @Version 1.0
  */
 @Service
-public class UserServiceImplImpl extends BaseServiceImpl<User> implements IUserService {
+public class SysMenuServiceImpl extends BaseServiceImpl<SysMenu> implements ISysMenuService {
 
     @Autowired
-    private UserRepository userRepository;
+    private SysMenuRepository sysMenuRepository;
 
-    public UserServiceImplImpl(@Qualifier("userRepository")BaseRepository repository) {
+    public SysMenuServiceImpl(@Qualifier("sysMenuRepository")BaseRepository repository) {
         super(repository);
     }
+
 
 }

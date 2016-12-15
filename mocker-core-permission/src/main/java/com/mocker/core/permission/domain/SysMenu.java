@@ -15,7 +15,7 @@ import javax.persistence.*;
 @ApiModel("权限菜单")
 @Entity
 @Table(name = "S_MENU")
-public class AuthMenu {
+public class SysMenu {
 
     @Id
     @GeneratedValue(generator = "system-uuid")

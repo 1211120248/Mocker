@@ -14,6 +14,9 @@ public class JsonResult {
 
     private static  final JsonResult SUCCESS = new JsonResult(true);
 
+    private static  final JsonResult ERROR = new JsonResult(false);
+
+
     @ApiModelProperty("是否操作成功")
     private boolean success;
 
@@ -36,6 +39,10 @@ public class JsonResult {
     public JsonResult(boolean success, Object data) {
         this.success = success;
         this.data = data;
+    }
+
+    public JsonResult(String msg) {
+        this.msg = msg;
     }
 
     public void setSuccess(boolean success) {
@@ -85,4 +92,13 @@ public class JsonResult {
     public static JsonResult getSuccess(Object data){
         return new JsonResult(true,data);
     }
+
+    public static JsonResult getError() {
+        return ERROR;
+    }
+
+    public static JsonResult getError(String message) {
+        return new JsonResult(false,message);
+    }
+
 }

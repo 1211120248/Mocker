@@ -3,8 +3,8 @@ package com.mocker.web.admin;
 import com.mocker.core.base.query.BaseQuery;
 import com.mocker.core.base.wrapper.JsonResult;
 import com.mocker.core.base.wrapper.PageResult;
-import com.mocker.core.permission.domain.AuthMenu;
-import com.mocker.core.permission.service.IAuthMenuService;
+import com.mocker.core.permission.domain.SysMenu;
+import com.mocker.core.permission.service.ISysMenuService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -21,10 +21,10 @@ import org.springframework.web.bind.annotation.*;
 @Api("权限菜单")
 @RestController
 @RequestMapping(value="/authMenu")
-public class AuthMenuController {
+public class SysMenuController {
 
     @Autowired
-    private IAuthMenuService authMenuService;
+    private ISysMenuService authMenuService;
 
 
     @ApiOperation("获取菜单列表")
@@ -38,30 +38,30 @@ public class AuthMenuController {
     @ApiImplicitParam(name = "id", value = "菜单ID", required = true, dataType = "String",paramType = "path")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public JsonResult get(@PathVariable("id") String id) {
-        AuthMenu authMenu = authMenuService.findById(id);
-        return JsonResult.getSuccess(authMenu);
+        SysMenu sysMenu = authMenuService.findById(id);
+        return JsonResult.getSuccess(sysMenu);
     }
 
     @ApiOperation(value="更新菜单")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "菜单ID", required = true, dataType = "String",paramType = "path"),
-            @ApiImplicitParam(name = "user", value = "菜单实体信息", required = true, dataType = "User")
+            @ApiImplicitParam(name = "user", value = "菜单实体信息", required = true, dataType = "SysUser")
     })
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public JsonResult update(@PathVariable("id") String id, @RequestBody AuthMenu authMenu) {
-        authMenu.setId(id);
-        authMenuService.save(authMenu);
+    public JsonResult update(@PathVariable("id") String id, @RequestBody SysMenu sysMenu) {
+        sysMenu.setId(id);
+        authMenuService.save(sysMenu);
         return JsonResult.getSuccess();
     }
 
 
     @ApiOperation(value="添加菜单")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "user", value = "菜单实体信息", required = true, dataType = "User")
+            @ApiImplicitParam(name = "user", value = "菜单实体信息", required = true, dataType = "SysUser")
     })
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public JsonResult save(@RequestBody AuthMenu authMenu) {
-        authMenuService.save(authMenu);
+    public JsonResult save(@RequestBody SysMenu sysMenu) {
+        authMenuService.save(sysMenu);
         return JsonResult.getSuccess();
     }
 

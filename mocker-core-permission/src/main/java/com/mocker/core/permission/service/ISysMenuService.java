@@ -1,8 +1,7 @@
 package com.mocker.core.permission.service;
 
 import com.mocker.core.base.service.IBaseService;
-import com.mocker.core.permission.domain.AuthMenu;
-import com.mocker.core.permission.domain.User;
+import com.mocker.core.permission.domain.SysMenu;
 
 /**
  * @author Mocker
@@ -10,6 +9,6 @@ import com.mocker.core.permission.domain.User;
  * @Description 权限菜单服务
  * @Version 1.0
  */
-public interface IAuthMenuService extends IBaseService<AuthMenu> {
+public interface ISysMenuService extends IBaseService<SysMenu> {
 
 }

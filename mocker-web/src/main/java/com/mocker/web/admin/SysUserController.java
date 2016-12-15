@@ -3,14 +3,14 @@ package com.mocker.web.admin;
 import com.mocker.core.base.query.BaseQuery;
 import com.mocker.core.base.wrapper.JsonResult;
 import com.mocker.core.base.wrapper.PageResult;
-import com.mocker.core.permission.domain.User;
-import com.mocker.core.permission.service.IUserService;
+import com.mocker.core.permission.domain.SysUser;
+import com.mocker.core.permission.service.ISysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.PermitAll;
@@ -25,10 +25,10 @@ import javax.annotation.security.PermitAll;
 @Api("用户管理")
 @RestController
 @RequestMapping(value="/user")
-public class UserController {
+public class SysUserController {
 
     @Autowired
-    private IUserService userService;
+    private ISysUserService userService;
 
     @PermitAll
     @ApiOperation("获取用户列表")
@@ -42,30 +42,31 @@ public class UserController {
     @ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "String",paramType = "path")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public JsonResult get(@PathVariable("id") String id) {
-        User user = userService.findById(id);
-        return JsonResult.getSuccess(user);
+        SysUser sysUser = userService.findById(id);
+        return JsonResult.getSuccess(sysUser);
     }
 
     @ApiOperation(value="更新用户")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "String",paramType = "path"),
-            @ApiImplicitParam(name = "user", value = "用户详细实体user", required = true, dataType = "User")
+            @ApiImplicitParam(name = "sysUser", value = "用户详细实体user", required = true, dataType = "SysUser")
     })
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public JsonResult update(@PathVariable("id") String id, @RequestBody User user) {
-        user.setId(id);
-        userService.save(user);
+    public JsonResult update(@PathVariable("id") String id, @RequestBody SysUser sysUser) {
+        sysUser.setId(id);
+        userService.save(sysUser);
         return JsonResult.getSuccess();
     }
 
 
     @ApiOperation(value="添加用户")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "user", value = "用户详细实体user", required = true, dataType = "User")
+            @ApiImplicitParam(name = "sysUser", value = "用户详细实体user", required = true, dataType = "SysUser")
     })
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public JsonResult save(@RequestBody User user) {
-        userService.save(user);
+    public JsonResult save(@RequestBody SysUser sysUser) {
+        sysUser.setPassword(new Sha256Hash(sysUser.getPassword()).toHex());
+        userService.save(sysUser);
         return JsonResult.getSuccess();
     }
 
