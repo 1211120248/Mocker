@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author Mocker
@@ -12,7 +13,6 @@ import javax.persistence.*;
  * @Description 权限菜单
  * @Version 1.0
  */
-@ApiModel("权限菜单")
 @Entity
 @Table(name = "S_MENU")
 public class SysMenu {
@@ -57,6 +57,13 @@ public class SysMenu {
     @ApiModelProperty("菜单状态:0 禁用 1启用")
     @Column
     private Integer state;
+
+    @ApiModelProperty("是否是展开的")
+    @Column
+    private boolean open;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "parentId",targetEntity = SysMenu.class)
+    private List<SysMenu> children;
 
     public String getId() {
         return id;
@@ -137,4 +144,21 @@ public class SysMenu {
     public void setState(Integer state) {
         this.state = state;
     }
+
+    public boolean isOpen() {
+        return open;
+    }
+
+    public void setOpen(boolean open) {
+        this.open = open;
+    }
+
+    public List<SysMenu> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<SysMenu> children) {
+        this.children = children;
+    }
+
 }

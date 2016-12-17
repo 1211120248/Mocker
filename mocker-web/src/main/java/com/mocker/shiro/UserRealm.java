@@ -32,7 +32,6 @@ public class UserRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         String loginName = (String) token.getPrincipal();
         String password = new String((char[])token.getCredentials());
-        password = (new Sha256Hash(password).toHex());
 
         SysUser sysUser = sysUserService.login(loginName,password);
         //账号不存在
@@ -49,6 +48,6 @@ public class UserRealm extends AuthorizingRealm {
             throw new LockedAccountException("账号已被锁定,请联系管理员");
         }
 
-        return new SimpleAuthenticationInfo(sysUser,password,sysUser.getUsername());
+        return new SimpleAuthenticationInfo(sysUser,password,sysUser.getLoginName());
     }
 }

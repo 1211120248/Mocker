@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Api("权限菜单")
 @RestController
-@RequestMapping(value="/authMenu")
+@RequestMapping(value="/menu")
 public class SysMenuController {
 
     @Autowired
@@ -45,7 +45,7 @@ public class SysMenuController {
     @ApiOperation(value="更新菜单")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "菜单ID", required = true, dataType = "String",paramType = "path"),
-            @ApiImplicitParam(name = "user", value = "菜单实体信息", required = true, dataType = "SysUser")
+            @ApiImplicitParam(name = "sysMenu", value = "菜单实体信息", required = true, dataType = "SysMenu")
     })
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public JsonResult update(@PathVariable("id") String id, @RequestBody SysMenu sysMenu) {
@@ -57,7 +57,7 @@ public class SysMenuController {
 
     @ApiOperation(value="添加菜单")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "user", value = "菜单实体信息", required = true, dataType = "SysUser")
+            @ApiImplicitParam(name = "sysMenu", value = "菜单实体信息", required = true, dataType = "SysMenu")
     })
     @RequestMapping(value = "", method = RequestMethod.POST)
     public JsonResult save(@RequestBody SysMenu sysMenu) {

@@ -41,6 +41,11 @@ public class JsonResult {
         this.data = data;
     }
 
+    public JsonResult(boolean success, String meg) {
+        this.success = success;
+        this.msg = meg;
+    }
+
     public JsonResult(String msg) {
         this.msg = msg;
     }
@@ -97,8 +102,8 @@ public class JsonResult {
         return ERROR;
     }
 
-    public static JsonResult getError(String message) {
-        return new JsonResult(false,message);
+    public static JsonResult getError(String msg) {
+        return new JsonResult(false,msg);
     }
 
 }

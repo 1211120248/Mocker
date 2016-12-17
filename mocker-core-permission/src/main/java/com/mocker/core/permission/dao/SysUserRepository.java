@@ -13,7 +13,6 @@ import com.mocker.core.permission.domain.SysUser;
 public interface SysUserRepository extends BaseRepository<SysUser>{
     /**
      * 根据账号和密码查询用户
-     * @param username
      * @param password
      * @return
      */

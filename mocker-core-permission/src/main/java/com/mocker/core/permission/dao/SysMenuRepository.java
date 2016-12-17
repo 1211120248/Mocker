@@ -3,6 +3,7 @@ package com.mocker.core.permission.dao;/**
  */
 
 import com.mocker.core.base.dao.BaseRepository;
+import com.mocker.core.permission.domain.SysMenu;
 import com.mocker.core.permission.domain.SysUser;
 
 /**
@@ -10,5 +11,5 @@ import com.mocker.core.permission.domain.SysUser;
  * @Date 2016-12-10 下午5:01
  * @Version 1.0
  */
-public interface SysMenuRepository extends BaseRepository<SysUser> {
+public interface SysMenuRepository extends BaseRepository<SysMenu> {
 }
