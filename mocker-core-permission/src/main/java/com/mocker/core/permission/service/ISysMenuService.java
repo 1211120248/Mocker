@@ -1,7 +1,10 @@
 package com.mocker.core.permission.service;
 
 import com.mocker.core.base.service.IBaseService;
+import com.mocker.core.base.wrapper.PageResult;
 import com.mocker.core.permission.domain.SysMenu;
+
+import java.util.List;
 
 /**
  * @author Mocker
@@ -11,4 +14,9 @@ import com.mocker.core.permission.domain.SysMenu;
  */
 public interface ISysMenuService extends IBaseService<SysMenu> {
 
+    /**
+     * 获取所有模块
+     * @return
+     */
+    List<SysMenu> findAllModule();
 }

@@ -12,6 +12,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @author Mocker
  * @Date 2016-12-12 上午12:02
@@ -27,11 +29,11 @@ public class SysMenuController {
     private ISysMenuService authMenuService;
 
 
-    @ApiOperation("获取菜单列表")
+    @ApiOperation("获取所有模块")
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public JsonResult list(BaseQuery baseQuery) {
-        PageResult pageResult = authMenuService.findAll(baseQuery);
-        return JsonResult.getSuccess(pageResult);
+    public JsonResult findAllModule() {
+        List<SysMenu> sysMenuList = authMenuService.findAllModule();
+        return JsonResult.getSuccess(sysMenuList);
     }
 
     @ApiOperation("根据ID获取菜单")

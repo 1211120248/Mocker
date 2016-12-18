@@ -16,7 +16,6 @@ import java.util.List;
 @Entity
 @Table(name = "S_MENU")
 public class SysMenu {
-
     @Id
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid")

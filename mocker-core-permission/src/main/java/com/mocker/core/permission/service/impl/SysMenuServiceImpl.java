@@ -1,12 +1,16 @@
 package com.mocker.core.permission.service.impl;
 import com.mocker.core.base.dao.BaseRepository;
 import com.mocker.core.base.service.impl.BaseServiceImpl;
+import com.mocker.core.base.wrapper.PageResult;
 import com.mocker.core.permission.dao.SysMenuRepository;
 import com.mocker.core.permission.domain.SysMenu;
 import com.mocker.core.permission.service.ISysMenuService;
+import com.mocker.core.permission.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author Mocker
@@ -23,5 +27,11 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenu> implements ISys
         super(repository);
     }
 
-
+    /**
+     * 获取所有模块
+     * @return
+     */
+    public List<SysMenu> findAllModule() {
+        return sysMenuRepository.findByType(Constants.MenuType.MODULE.getValue());
+    }
 }

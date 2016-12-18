@@ -19,7 +19,7 @@ public class SysNavController {
         return "page/login";
     }
 
-    @RequestMapping(value = "/index",method = RequestMethod.GET)
+    @RequestMapping(value = "/",method = RequestMethod.GET)
     public String index(){
         return "page/index";
     }

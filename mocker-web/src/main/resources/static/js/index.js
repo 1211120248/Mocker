@@ -4,15 +4,15 @@ var menuItem = Vue.extend({
 	props:{item:{}},
 	template:[
 	          '<li>',
-	          '<a v-if="item.type === 0" href="javascript:;">',
+	          '<a v-if="item.type === 1" href="javascript:;">',
 	          '<i v-if="item.icon != null" :class="item.icon"></i>',
 	          '<span>{{item.name}}</span>',
 	          '<i class="fa fa-angle-left pull-right"></i>',
 	          '</a>',
-	          '<ul v-if="item.type === 0" class="treeview-menu">',
-	          '<menu-item :item="item" v-for="item in item.list"></menu-item>',
+	          '<ul v-if="item.type === 1" class="treeview-menu">',
+	          '<menu-item :item="item" v-for="item in item.children"></menu-item>',
 	          '</ul>',
-	          '<a v-if="item.type === 1" :href="\'#\'+item.url"><i v-if="item.icon != null" :class="item.icon"></i><i v-else class="fa fa-circle-o"></i> {{item.name}}</a>',
+	          '<a v-if="item.type === 2" :href="\'#\'+item.url"><i v-if="item.icon != null" :class="item.icon"></i><i v-else class="fa fa-circle-o"></i> {{item.name}}</a>',
 	          '</li>'
 	].join('')
 });
@@ -33,7 +33,7 @@ var vm = new Vue({
 	methods: {
 		getMenuList: function (event) {
 			$.getJSON("/menu", function(r){
-				vm.menuList = r.data.data;
+				vm.menuList = r.data;
 			});
 		},
 		getUser: function(){
@@ -88,10 +88,11 @@ var vm = new Vue({
 
 function routerList(router, menuList){
 	for(var key in menuList){
+		debugger
 		var menu = menuList[key];
-		if(menu.type == 0){
-			routerList(router, menu.list);
-		}else if(menu.type == 1){
+		if(menu.type == 1){
+			routerList(router, menu.children);
+		}else if(menu.type == 2){
 			router.add('#'+menu.url, function() {
 				var url = window.location.hash;
 
