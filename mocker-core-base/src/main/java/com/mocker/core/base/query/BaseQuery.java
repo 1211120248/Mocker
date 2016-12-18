@@ -14,21 +14,29 @@ public class BaseQuery {
 
     private int page = 0;
 
-    private int pageSize = 10;
+    private int rows = 10;
 
-    public int getPage() {
-        return page;
+    public BaseDataFilterImpl getFilter() {
+        return filter;
+    }
+
+    public void setFilter(BaseDataFilterImpl filter) {
+        this.filter = filter;
+    }
+
+    public Integer getPage() {
+        return page > 0 ? page - 1 : page;
     }
 
     public void setPage(int page) {
         this.page = page;
     }
 
-    public int getPageSize() {
-        return pageSize;
+    public int getRows() {
+        return rows;
     }
 
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
+    public void setRows(int rows) {
+        this.rows = rows;
     }
 }

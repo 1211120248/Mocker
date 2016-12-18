@@ -88,7 +88,6 @@ var vm = new Vue({
 
 function routerList(router, menuList){
 	for(var key in menuList){
-		debugger
 		var menu = menuList[key];
 		if(menu.type == 1){
 			routerList(router, menu.children);

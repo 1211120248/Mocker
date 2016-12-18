@@ -49,7 +49,7 @@ public class BaseServiceImpl<T> implements IBaseService<T> {
     }
 
     public PageResult findAll(BaseQuery baseQuery) {
-        Pageable pageable = new PageRequest(baseQuery.getPage(),baseQuery.getPageSize());
+        Pageable pageable = new PageRequest(baseQuery.getPage(),baseQuery.getRows());
         Page<T> page = repository.findAll(pageable);
         PageResult<T> pageResult = PageResult.getInstance(page.getTotalPages(),page.getTotalElements(),page.getContent());
         return pageResult;

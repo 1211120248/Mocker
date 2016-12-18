@@ -21,15 +21,15 @@ public class PageResult<T> {
     private Integer page;
 
     @ApiModelProperty("总行数")
-    private Long total;
+    private Long rows;
 
     public PageResult() {
     }
 
-    public PageResult(List<T> data, Integer page, Long total) {
+    public PageResult(List<T> data, Integer page, Long rows) {
         this.data = data;
         this.page = page;
-        this.total = total;
+        this.rows = rows;
     }
 
     public List<T> getData() {
@@ -48,15 +48,15 @@ public class PageResult<T> {
         this.page = page;
     }
 
-    public Long getTotal() {
-        return total;
+    public Long getRows() {
+        return rows;
     }
 
-    public void setTotal(Long total) {
-        this.total = total;
+    public void setRows(Long rows) {
+        this.rows = rows;
     }
 
-    public static <T> PageResult getInstance(int page, long total, List<T> data) {
-        return  new PageResult(data,page,total);
+    public static <T> PageResult getInstance(int page, long rows, List<T> data) {
+        return  new PageResult(data,page,rows);
     }
 }
