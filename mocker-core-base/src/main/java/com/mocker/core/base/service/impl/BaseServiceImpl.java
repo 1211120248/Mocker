@@ -5,6 +5,7 @@ import com.mocker.core.base.query.BaseQuery;
 import com.mocker.core.base.service.IBaseService;
 import com.mocker.core.base.wrapper.PageResult;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
@@ -50,8 +51,8 @@ public class BaseServiceImpl<T> implements IBaseService<T> {
 
     public PageResult findAll(BaseQuery baseQuery) {
         Pageable pageable = new PageRequest(baseQuery.getPage(),baseQuery.getRows());
-        Page<T> page = repository.findAll(pageable);
-        PageResult<T> pageResult = PageResult.getInstance(page.getTotalPages(),page.getTotalElements(),page.getContent());
+        Page page =  repository.findAll(pageable);
+        PageResult<T> pageResult = PageResult.getInstance(page);
         return pageResult;
     }
 }
