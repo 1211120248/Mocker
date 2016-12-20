@@ -104,7 +104,7 @@ var vm = new Vue({
 			    dataType: "json",
 			    success: function(result){
 					if(result.success == true){//登录成功
-						parent.location.href ='index';
+						parent.location.href ='/';
 					}else{
 						vm.error = true;
 						vm.errorMsg = result.msg;

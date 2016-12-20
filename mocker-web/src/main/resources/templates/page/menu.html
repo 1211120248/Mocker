@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>管理员列表</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/plugins/treetable/css/jquery.treetable.css">
+    <link rel="stylesheet" href="/plugins/treetable/css/jquery.treetable.theme.default.css">
+    <script src="/libs/vue.min.js"></script>
+    <script src="/libs/jquery.min.js"></script>
+    <script src="/plugins/treetable/jquery.treetable.js"></script>
+</head>
+<body>
+    <div id="page">
+        <div class="grid-btn">
+            <a class="btn btn-default" href="user_add.html">新增</a>
+            <button type="button"  class="btn btn-default" @click="update">修改</button>
+            <button type="button" class="btn btn-default" @click="del">删除</button>
+        </div>
+        <table id="tree">
+            <!--<caption>-->
+            <!--<a href="#" onclick="jQuery('#example-advanced').treetable('expandAll'); return false;">Expand all</a>-->
+            <!--<a href="#" onclick="jQuery('#example-advanced').treetable('collapseAll'); return false;">Collapse all</a>-->
+            <!--</caption>-->
+            <thead>
+            <tr>
+                <th>菜单名称</th>
+                <th>菜单地址</th>
+                <th>父级菜单</th>
+            </tr>
+            </thead>
+            <tbody id="tree">
+                <!--<template v-for="item in menuList">-->
+                    <!--<tr v-bind:data-tt-id="item.id"><td><span>{{ item.name }}</span></td><td>{{ item.url }}</td><td>{{ item.parentName }}</td></tr>-->
+                <!--</template>-->
+                <tr data-tt-id='5'><td><span class='folder'>Perl</span></td><td>Folder</td><td>--</td></tr>
+                <tr data-tt-id='5-1' data-tt-parent-id='5'><td><span class='folder'>wxPerl</span></td><td>Folder</td><td>--</td></tr>
+                <tr data-tt-id='5-1-1' data-tt-parent-id='5-1'><td><span class='file'>INSTALL.pod</span></td><td>File</td><td>8.26 KB</td></tr>
+                <tr data-tt-id='5-1-2' data-tt-parent-id='5-1'><td><span class='file'>todo.txt</span></td><td>File</td><td>2.3 KB</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="/js/menu.js"></script>
+</body>
+</html>

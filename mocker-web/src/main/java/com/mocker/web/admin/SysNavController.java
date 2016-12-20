@@ -36,9 +36,18 @@ public class SysNavController {
      * 用户管理
      * @return
      */
-    @RequestMapping(value = "/user.html",method = RequestMethod.GET)
+    @RequestMapping(value = "/user/page",method = RequestMethod.GET)
     public String userManager(){
         return "page/user";
+    }
+
+    /**
+     * 菜单管理
+     * @return
+     */
+    @RequestMapping(value = "/menu/page",method = RequestMethod.GET)
+    public String menuManager(){
+        return "page/menu";
     }
 
 }

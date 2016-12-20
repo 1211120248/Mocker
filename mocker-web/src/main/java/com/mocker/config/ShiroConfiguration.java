@@ -57,16 +57,22 @@ public class ShiroConfiguration {
 		return new AuthorizationAttributeSourceAdvisor();
 	}
 
-	@Bean(name = "shiroFilter")
-	public ShiroFilterFactoryBean getShiroFilterFactoryBean() {
-		ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
-		shiroFilterFactoryBean
-				.setSecurityManager(getDefaultWebSecurityManager());
-		shiroFilterFactoryBean.setLoginUrl("/login");
-		filterChainDefinitionMap.put("/**", "anon");
-		shiroFilterFactoryBean
-				.setFilterChainDefinitionMap(filterChainDefinitionMap);
-		return shiroFilterFactoryBean;
-	}
+//	@Bean(name = "shiroFilter")
+//	public ShiroFilterFactoryBean getShiroFilterFactoryBean() {
+//		ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
+//		shiroFilterFactoryBean
+//				.setSecurityManager(getDefaultWebSecurityManager());
+//		shiroFilterFactoryBean.setLoginUrl("/login");
+//		filterChainDefinitionMap.put("/captcha.jpg", "anon");
+//		filterChainDefinitionMap.put("/css/**", "anon");
+//		filterChainDefinitionMap.put("/fonts/**", "anon");
+//		filterChainDefinitionMap.put("/js/**", "anon");
+//		filterChainDefinitionMap.put("/libs/**", "anon");
+//		filterChainDefinitionMap.put("/plugins/**", "anon");
+//		filterChainDefinitionMap.put("/**", "authc");
+//		shiroFilterFactoryBean
+//				.setFilterChainDefinitionMap(filterChainDefinitionMap);
+//		return shiroFilterFactoryBean;
+//	}
 
 }
