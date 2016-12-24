@@ -51,4 +51,11 @@ public interface IBaseService<T> {
      */
     public PageResult findAll(BaseQuery baseQuery);
 
+    /**
+     * copy集合
+     * @param data
+     * @return
+     */
+    public List copyList(List data);
+
 }

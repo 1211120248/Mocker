@@ -32,6 +32,7 @@ public class JsonResult {
     @ApiModelProperty("数据")
     private Object data;
 
+
     public JsonResult(boolean success) {
         this.success = success;
     }

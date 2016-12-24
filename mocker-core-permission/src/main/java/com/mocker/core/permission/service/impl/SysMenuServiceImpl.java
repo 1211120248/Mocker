@@ -3,11 +3,13 @@ import com.mocker.core.base.dao.BaseRepository;
 import com.mocker.core.base.service.impl.BaseServiceImpl;
 import com.mocker.core.base.wrapper.PageResult;
 import com.mocker.core.permission.dao.SysMenuRepository;
+import com.mocker.core.permission.data.SysMenuData;
 import com.mocker.core.permission.domain.SysMenu;
 import com.mocker.core.permission.service.ISysMenuService;
 import com.mocker.core.permission.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,7 +26,7 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenu> implements ISys
     private SysMenuRepository sysMenuRepository;
 
     public SysMenuServiceImpl(@Qualifier("sysMenuRepository")BaseRepository repository) {
-        super(repository);
+        super(repository,SysMenu.class, SysMenuData.class);
     }
 
     /**

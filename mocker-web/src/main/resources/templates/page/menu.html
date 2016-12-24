@@ -6,43 +6,60 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/plugins/treetable/css/jquery.treetable.css">
-    <link rel="stylesheet" href="/plugins/treetable/css/jquery.treetable.theme.default.css">
-    <script src="/libs/vue.min.js"></script>
-    <script src="/libs/jquery.min.js"></script>
-    <script src="/plugins/treetable/jquery.treetable.js"></script>
+    <link rel="stylesheet" type="text/css" href="/plugins/easyui/themes/bootstrap/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/plugins/easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/css/menu.css">
 </head>
 <body>
-    <div id="page">
-        <div class="grid-btn">
-            <a class="btn btn-default" href="user_add.html">新增</a>
-            <button type="button"  class="btn btn-default" @click="update">修改</button>
-            <button type="button" class="btn btn-default" @click="del">删除</button>
+<div id="app" v-cloak>
+    <button type="button" class="btn btn-default" @click="saveMenu" >添加菜单</button>
+    <div class="modal fade" id="saveModal" tabindex="-1" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">
+                        添加菜单
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <div class="col-lg-10 col-lg-offset-1">
+                                <input type="text" class="form-control"  placeholder="请输入菜单名称" id="name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-10 col-lg-offset-1">
+                                <textarea class="form-control" rows="2" placeholder="请输入菜单地址"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-10 col-lg-offset-1">
+                                <select class="form-control">
+                                    <option>模块</option>
+                                    <option>页面</option>
+                                    <option>按钮</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">保存</button>
+                    <button type="button" class="btn btn-primary" @click="close">关闭</button>
+                </div>
+            </div>
         </div>
-        <table id="tree">
-            <!--<caption>-->
-            <!--<a href="#" onclick="jQuery('#example-advanced').treetable('expandAll'); return false;">Expand all</a>-->
-            <!--<a href="#" onclick="jQuery('#example-advanced').treetable('collapseAll'); return false;">Collapse all</a>-->
-            <!--</caption>-->
-            <thead>
-            <tr>
-                <th>菜单名称</th>
-                <th>菜单地址</th>
-                <th>父级菜单</th>
-            </tr>
-            </thead>
-            <tbody id="tree">
-                <!--<template v-for="item in menuList">-->
-                    <!--<tr v-bind:data-tt-id="item.id"><td><span>{{ item.name }}</span></td><td>{{ item.url }}</td><td>{{ item.parentName }}</td></tr>-->
-                <!--</template>-->
-                <tr data-tt-id='5'><td><span class='folder'>Perl</span></td><td>Folder</td><td>--</td></tr>
-                <tr data-tt-id='5-1' data-tt-parent-id='5'><td><span class='folder'>wxPerl</span></td><td>Folder</td><td>--</td></tr>
-                <tr data-tt-id='5-1-1' data-tt-parent-id='5-1'><td><span class='file'>INSTALL.pod</span></td><td>File</td><td>8.26 KB</td></tr>
-                <tr data-tt-id='5-1-2' data-tt-parent-id='5-1'><td><span class='file'>todo.txt</span></td><td>File</td><td>2.3 KB</td></tr>
-            </tbody>
-        </table>
     </div>
-    <script src="/js/menu.js"></script>
+</div>
+<table id="tt"></table>
+<script src="/libs/vue.min.js"></script>
+<script type="text/javascript" src="/libs/jquery.min.js"></script>
+<script type="text/javascript" src="/libs/bootstrap.min.js"></script>
+<script src="/plugins/layer/layer.js"></script>
+<script type="text/javascript" src="/plugins/easyui/jquery.easyui.min.js"></script>
+<script src="/js/menu.js"></script>
+<script src="/js/common.js"></script>
 </body>
 </html>

@@ -1,7 +1,8 @@
-//jqGrid的配置信息
-$.jgrid.defaults.width = 1000;
-$.jgrid.defaults.responsive = true;
-$.jgrid.defaults.styleUI = 'Bootstrap';
+if($.jgrid){
+	$.jgrid.defaults.width = 1000;
+	$.jgrid.defaults.responsive = true;
+	$.jgrid.defaults.styleUI = 'Bootstrap';
+}
 
 //工具集合Tools
 window.T = {};

@@ -1,17 +1,21 @@
 package com.mocker.web.admin;
 
 import com.mocker.core.base.query.BaseQuery;
+import com.mocker.core.base.utils.BeanCopyUtils;
 import com.mocker.core.base.wrapper.JsonResult;
 import com.mocker.core.base.wrapper.PageResult;
+import com.mocker.core.permission.data.SysMenuData;
 import com.mocker.core.permission.domain.SysMenu;
 import com.mocker.core.permission.service.ISysMenuService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import net.sf.cglib.beans.BeanCopier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,9 +35,16 @@ public class SysMenuController {
 
     @ApiOperation("获取所有模块")
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public JsonResult findAllModule() {
+    public JsonResult getAllModule() {
         List<SysMenu> sysMenuList = authMenuService.findAllModule();
         return JsonResult.getSuccess(sysMenuList);
+    }
+
+    @ApiOperation("获取所有的菜单")
+    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
+    public JsonResult getAll() {
+        List<SysMenu> sysMenuList = authMenuService.findAll();
+        return JsonResult.getSuccess( authMenuService.copyList(sysMenuList));
     }
 
     @ApiOperation("根据ID获取菜单")
