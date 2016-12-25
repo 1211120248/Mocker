@@ -7,6 +7,7 @@ import com.mocker.core.base.wrapper.PageResult;
 import com.mocker.core.permission.data.SysMenuData;
 import com.mocker.core.permission.domain.SysMenu;
 import com.mocker.core.permission.service.ISysMenuService;
+import com.mocker.core.permission.service.impl.SysMenuServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -33,9 +34,9 @@ public class SysMenuController {
     private ISysMenuService authMenuService;
 
 
-    @ApiOperation("获取所有模块")
+    @ApiOperation("获取所有系统的菜单")
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public JsonResult getAllModule() {
+    public JsonResult getAllSystem() {
         List<SysMenu> sysMenuList = authMenuService.findAllModule();
         return JsonResult.getSuccess(sysMenuList);
     }

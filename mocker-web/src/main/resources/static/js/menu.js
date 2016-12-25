@@ -22,18 +22,65 @@ $(function(){
         }
     });
 });
-
+var tt = $("#tt");
 var vm = new Vue({
     el:'#app',
     data:{
+        menu:{
+            name:"",
+            url:"",
+            icon:"",
+            permission:"",
+            type:"",
+            parentId:"",
+            parentName:""
+        }
     },
     methods: {
-        saveMenu:function(){
+        openSavePage:function(){
+            //先清除页面在打开
+            this.clearSavePage();
+            //获取parentId
+            var seleleMenu = tt.treegrid("getSelected");
+            if(seleleMenu != null){
+                vm.menu.parentId = seleleMenu.id;
+                vm.menu.parentName = seleleMenu.name;
+            }
             $("#saveModal").modal('show');
         },
-        close:function(){
+        closeSavePage:function(){
             $("#saveModal").modal('hide');
-        }
+        },
+        clearSavePage:function(){
+            //清空保存页面中之前的数据
+            vm.menu.name="";
+            vm.menu.url="";
+            vm.menu.icon="";
+            vm.menu.permission="";
+            vm.menu.type="";
+            vm.menu.parentId="";
+        },save:function(){
+            var data = {
+                name:vm.menu.name,
+                url:vm.menu.url,
+                icon:vm.menu.icon,
+                permission:vm.menu.permission,
+                type:vm.menu.type,
+                parentId:vm.menu.parentId,
+                parentName:vm.menu.parentName
+            }
+            $.ajax({
+                type: "POST",
+                url: "/menu",
+                contentType: "application/json; charset=utf-8",
+                data:JSON.stringify(data),
+                dataType: "json",
+                success: function(result){
+                    tt.treegrid("reload");
+                }
+            });
+        },
+
     }
 });
 
