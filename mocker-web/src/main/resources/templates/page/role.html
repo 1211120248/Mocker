@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>角色列表</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/plugins/easyui/themes/bootstrap/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/plugins/easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="/plugins/ztree/css/metroStyle/metroStyle.css">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/css/menu.css">
+</head>
+<body>
+<div id="app" v-cloak>
+    <button type="button" class="btn btn-default" @click="openSavePage" >添加角色</button>
+    <div class="modal fade" id="saveModal" tabindex="-1" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">
+                        添加角色
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label for="name" class="col-lg-2 control-label">角色名称</label>
+                            <div class="col-lg-8 col-lg-offset-1">
+                                <input type="text" class="form-control"  placeholder="请输入角色名称" v-model="role.name" id="name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="note" class="col-lg-2 control-label">角色备注</label>
+                            <div class="col-lg-8 col-lg-offset-1">
+                                <textarea class="form-control" rows="2" placeholder="请输入角色备注" v-model="role.note" id="note"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="treeDemo" class="col-lg-2 control-label">授权</label>
+                            <div class="col-lg-8 col-lg-offset-1">
+                                <ul id="treeDemo" class="ztree"></ul>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"  @click="save">保存</button>
+                    <button type="button" class="btn btn-primary" @click="closeSavePage">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/libs/vue.min.js"></script>
+<script type="text/javascript" src="/libs/jquery.min.js"></script>
+<script type="text/javascript" src="/plugins/ztree/jquery.ztree.all.min.js"></script>
+<script type="text/javascript" src="/libs/bootstrap.min.js"></script>
+<script src="/plugins/layer/layer.js"></script>
+<script type="text/javascript" src="/plugins/easyui/jquery.easyui.min.js"></script>
+<script src="/js/role.js"></script>
+<script src="/js/common.js"></script>
+</body>
+</html>

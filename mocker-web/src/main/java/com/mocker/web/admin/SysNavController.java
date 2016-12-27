@@ -50,4 +50,14 @@ public class SysNavController {
         return "page/menu";
     }
 
+
+    /**
+     * 角色角色
+     * @return
+     */
+    @RequestMapping(value = "/role/page",method = RequestMethod.GET)
+    public String roleManager(){
+        return "page/role";
+    }
+
 }

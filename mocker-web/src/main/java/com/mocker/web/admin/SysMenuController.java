@@ -1,5 +1,6 @@
 package com.mocker.web.admin;
 
+import com.mocker.core.base.plugins.ztree.ZtreeEntity;
 import com.mocker.core.base.query.BaseQuery;
 import com.mocker.core.base.utils.BeanCopyUtils;
 import com.mocker.core.base.wrapper.JsonResult;
@@ -88,5 +89,4 @@ public class SysMenuController {
         authMenuService.delete(id);
         return JsonResult.getSuccess();
     }
-
 }
