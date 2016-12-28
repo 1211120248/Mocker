@@ -46,20 +46,20 @@ public class SysMenuController {
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     public JsonResult getAll() {
         List<SysMenu> sysMenuList = authMenuService.findAll();
-        return JsonResult.getSuccess( authMenuService.copyList(sysMenuList));
+        return JsonResult.getSuccess(authMenuService.copyList(sysMenuList));
     }
 
     @ApiOperation("根据ID获取菜单")
-    @ApiImplicitParam(name = "id", value = "菜单ID", required = true, dataType = "String",paramType = "path")
+    @ApiImplicitParam(name = "id", value = "菜单ID", required = true, dataType = "String", paramType = "path")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public JsonResult get(@PathVariable("id") String id) {
         SysMenu sysMenu = authMenuService.findById(id);
         return JsonResult.getSuccess(sysMenu);
     }
 
-    @ApiOperation(value="更新菜单")
+    @ApiOperation(value = "更新菜单")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "菜单ID", required = true, dataType = "String",paramType = "path"),
+            @ApiImplicitParam(name = "id", value = "菜单ID", required = true, dataType = "String", paramType = "path"),
             @ApiImplicitParam(name = "sysMenu", value = "菜单实体信息", required = true, dataType = "SysMenu")
     })
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
@@ -70,7 +70,7 @@ public class SysMenuController {
     }
 
 
-    @ApiOperation(value="添加菜单")
+    @ApiOperation(value = "添加菜单")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "sysMenu", value = "菜单实体信息", required = true, dataType = "SysMenu")
     })
@@ -80,13 +80,24 @@ public class SysMenuController {
         return JsonResult.getSuccess();
     }
 
-    @ApiOperation(value="删除菜单")
+    @ApiOperation(value = "删除菜单")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "菜单Id", required = true, dataType = "String",paramType = "path")
+            @ApiImplicitParam(name = "id", value = "菜单Id", required = true, dataType = "String", paramType = "path")
     })
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public JsonResult delete(@PathVariable("id") String id) {
         authMenuService.delete(id);
         return JsonResult.getSuccess();
+    }
+
+    @ApiOperation("获取菜单Tree")
+    @RequestMapping(value = "getMenuTree", method = RequestMethod.GET)
+    public JsonResult getMenuTree() {
+        List<SysMenu> sysMenuList = authMenuService.findAll();
+        List<ZtreeEntity> ztreeEntityList = new ArrayList<ZtreeEntity>();
+        sysMenuList.stream().
+                forEach(sysMenu -> ztreeEntityList.add(new ZtreeEntity(sysMenu.getId(),sysMenu.getParentId(),
+                        sysMenu.getName(),sysMenu.isOpen(),sysMenu.getIcon())));
+        return JsonResult.getSuccess(ztreeEntityList);
     }
 }

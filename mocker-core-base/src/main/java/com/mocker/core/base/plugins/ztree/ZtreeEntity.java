@@ -1,5 +1,7 @@
 package com.mocker.core.base.plugins.ztree;
 
+import io.swagger.annotations.ApiModel;
+
 /**
  * @author Mocker
  * @Date 2016-12-28 上午1:41
@@ -8,13 +10,46 @@ package com.mocker.core.base.plugins.ztree;
  */
 public class ZtreeEntity {
 
+    /**
+     * 节点Id
+     */
     private String id;
 
-    private String pid;
+    /**
+     * 父节点ID
+     */
+    private String pId;
 
+    /**
+     * 节点名称
+     */
     private String name;
 
+    /**
+     * 是否展开
+     */
     private boolean open;
+
+    /**
+     * 图标
+     */
+    private String icon;
+
+
+    public ZtreeEntity(String id, String pid, String name, boolean open) {
+        this.id = id;
+        this.pId = pid;
+        this.name = name;
+        this.open = open;
+    }
+
+    public ZtreeEntity(String id, String pId, String name, boolean open, String icon) {
+        this.id = id;
+        this.pId = pId;
+        this.name = name;
+        this.open = open;
+        this.icon = icon;
+    }
 
     public String getId() {
         return id;
@@ -24,12 +59,12 @@ public class ZtreeEntity {
         this.id = id;
     }
 
-    public String getPid() {
-        return pid;
+    public String getpId() {
+        return pId;
     }
 
-    public void setPid(String pid) {
-        this.pid = pid;
+    public void setpId(String pId) {
+        this.pId = pId;
     }
 
     public String getName() {
@@ -46,5 +81,13 @@ public class ZtreeEntity {
 
     public void setOpen(boolean open) {
         this.open = open;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 }
