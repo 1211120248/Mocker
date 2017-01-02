@@ -4,8 +4,6 @@ if($.jgrid){
 	$.jgrid.defaults.styleUI = 'Bootstrap';
 }
 
-//工具集合Tools
-window.T = {};
 
 // 获取请求参数
 // 使用示例
@@ -61,13 +59,13 @@ function getSelectedRow() {
     	alert("请选择一条记录");
     	return ;
     }
-    
+
     var selectedIDs = grid.getGridParam("selarrrow");
     if(selectedIDs.length > 1){
     	alert("只能选择一条记录");
     	return ;
     }
-    
+
     return selectedIDs[0];
 }
 
@@ -79,6 +77,7 @@ function getSelectedRows() {
     	alert("请选择一条记录");
     	return ;
     }
-    
+
     return grid.getGridParam("selarrrow");
 }
+

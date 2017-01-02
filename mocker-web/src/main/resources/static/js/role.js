@@ -1,3 +1,45 @@
+$(function(){
+    $('#roleTree').treegrid({
+        fit:true,
+        fitColumns:true,
+        url:'/role',
+        method:"get",
+        idField:'id',
+        treeField:'name',
+        columns:[[
+            {field:'name',title:'角色名称',width:"50%"},
+            {field:'note',title:'角色备注',width:"50%"}
+        ]],
+        loadFilter:function(result){
+            var data = result.data;
+            if (data){
+                data.total = data.totalCount;
+                return data;
+            }
+        }
+    });
+
+    $('#menuTree').treegrid({
+        fit:true,
+        fitColumns:true,
+        url:'/menu',
+        method:"get",
+        idField:'id',
+        lines: true,
+        treeField:'name',
+        columns:[[
+            {field:'name',title:'菜单名称',width:"100%"}
+        ]],
+        loadFilter:function(result){
+            var data = result.data;
+            if (data){
+                data.total = data.totalCount;
+                return data;
+            }
+        }
+    });
+});
+
 var vm = new Vue({
     el:'#app',
     data:{
@@ -7,6 +49,9 @@ var vm = new Vue({
         }
     },
     methods: {
+        assginPermission:function(){
+            //分配权限
+        },
         openSavePage:function(){
             //先清除页面在打开
             this.clearSavePage();
@@ -42,25 +87,4 @@ var vm = new Vue({
 
     }
 });
-
-var setting = {
-    check: {
-        enable: true
-    },
-    data: {
-        simpleData: {
-            enable: true
-        }
-    }
-};
-
-var code;
-
-$(document).ready(function(){
-    $.get("/menu/getMenuTree",function(result){
-        setting.check.chkboxType = { "Y" : "ps", "N" : "ps" };
-        $.fn.zTree.init($("#treeDemo"), setting, result.data);
-    });
-});
-
 

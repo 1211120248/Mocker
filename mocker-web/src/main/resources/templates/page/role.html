@@ -15,6 +15,7 @@
 <body>
 <div id="app" v-cloak>
     <button type="button" class="btn btn-default" @click="openSavePage" >添加角色</button>
+    <button type="button" class="btn btn-default" @click="assginPermission" >分配权限</button>
     <div class="modal fade" id="saveModal" tabindex="-1" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -37,12 +38,6 @@
                                 <textarea class="form-control" rows="2" placeholder="请输入角色备注" v-model="role.note" id="note"></textarea>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="treeDemo" class="col-lg-2 control-label">授权</label>
-                            <div class="col-lg-8 col-lg-offset-1">
-                                <ul id="treeDemo" class="ztree"></ul>
-                            </div>
-                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -51,6 +46,14 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<div class="easyui-layout" fit="true">
+    <div data-options="region:'west'" title="角色列表" style="width:50%">
+        <table id="roleTree"></table>
+    </div>
+    <div data-options="region:'center'" title="菜单列表">
+        <ul id="menuTree" class="easyui-tree" data-options="url:'/menu',method:'get',animate:true,checkbox:true"></ul>
     </div>
 </div>
 <script src="/libs/vue.min.js"></script>

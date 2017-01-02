@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.PermitAll;
+import java.util.List;
 
 
 /**
@@ -40,6 +41,13 @@ public class SysRoleController {
     public JsonResult save(@RequestBody SysRole sysRole) {
         sysRoleService.save(sysRole);
         return JsonResult.getSuccess();
+    }
+
+    @ApiOperation(value="获取角色列表")
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public JsonResult list() {
+        List<SysRole> sysRoles = sysRoleService.findAll();
+        return JsonResult.getSuccess(sysRoles);
     }
 
 }
