@@ -1,0 +1,13 @@
+group 'com.mocker'
+version '1.0-SNAPSHOT'
+apply plugin: 'java'
+sourceCompatibility = 1.8
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile project(":mocker-core-base")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa:${springBootPluginVersion}")
+    compile("io.springfox:springfox-swagger2:${springfoxVersion}")
+
+
+}

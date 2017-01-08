@@ -1,0 +1,6 @@
+rootProject.name = 'Mocker'
+include 'mocker-web'
+include 'mocker-core-permission'
+include 'mocker-core-base'
+include 'mocker-core-log'
+
